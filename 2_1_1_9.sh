@@ -1,1 +1,1 @@
-sed -n -E "/(^.).*\1$/Ip" /usr/share/dict/words
+sed -n -E "/(^.).*\1$|^.$/Ip" /usr/share/dict/words
