@@ -1,6 +1,6 @@
 # FIXME: does not count hidden dirs
-ls -ald */ | grep ".*"
+ls -l  | grep -c "^d"
 
-# this will also count hidden dirs
-# FIXME: also counts . and ..
-#ls -la | grep  -E "^d"
+# this will count hidden dirs
+# FIXME: but also counts . and ..
+#ls -la | grep  -c "^d"
