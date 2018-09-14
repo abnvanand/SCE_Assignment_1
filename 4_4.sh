@@ -39,6 +39,13 @@ move_specific() {
     done
 }
 
+if [ $# -lt 2 ]
+then
+    echo "Too few arguments: $# supplied; 2 needed"
+    echo "Usage : bash 4_4.sh <Source_Directory> <Type_of_Files>"
+    exit 1
+fi
+
 
 cd $1
 
