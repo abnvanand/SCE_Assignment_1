@@ -53,7 +53,12 @@ fi
 
 
 cd $1
-file_types=($2 $3 $4 $5 $6 $7 $8 $9)
+file_types=()
+for ((i=2;i<=$#;i++))
+do
+    file_types[i]=${!i}
+done
+
 
 if [ $2 = "all" ]
 then
