@@ -1,1 +1,1 @@
-sed -n '/^[aeiou]/Ip' address-book.csv
+sed '/^[aeiou]/Id' address-book.csv
