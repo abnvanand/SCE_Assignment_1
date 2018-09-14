@@ -24,19 +24,24 @@ move_all() {
 }
 
 move_specific() {
-    for file in *.${1}
+    file_types=("$@")
+    for type in ${file_types[*]}
     do
-        if [ -f "$file" ]
-        then
-            dirname=`echo "${1}" | awk '{print toupper($0)}'`
-            echo "Moving $file to dir: $dirname"
-            mkdir -p ${dirname}
-            mv "$file" "$dirname"
-        elif [ -d "$file" ]
-        then
-            echo "Skipping DIR: $file"
-        fi
+        for file in *.${type}
+        do
+            if [ -f "$file" ]
+            then
+                dirname=`echo "${type}" | awk '{print toupper($0)}'`
+                echo "Moving $file to dir: $dirname"
+                mkdir -p ${dirname}
+                mv "$file" "$dirname"
+            elif [ -d "$file" ]
+            then
+                echo "Skipping DIR: $file"
+            fi
+        done
     done
+
 }
 
 if [ $# -lt 2 ]
@@ -48,12 +53,13 @@ fi
 
 
 cd $1
+file_types=($2 $3 $4 $5 $6 $7 $8 $9)
 
 if [ $2 = "all" ]
 then
     move_all
 else
-    move_specific $2
+    move_specific "${file_types[*]}"
 fi
 
 
